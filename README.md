@@ -34,6 +34,16 @@ Then you can interact with hubot-httpsclient by typing `hubot-httpsclient help`.
     hubot-httpsclient help - Displays all of the help commands that hubot-httpsclient knows about.
     ...
 
+Standard HTTPS GET request.
+
+    hubot-httpsclient> hubot-httpsclient httpsget
+    hubot-httpsclient> Shell: Status code: 200
+
+Extended HTTPS POST request.
+
+    hubot-httpsclient> hubot-httpsclient httpspost Fri Jan  1 15:47:12 PST 2021 5
+    hubot-httpsclient> Shell: Status code: 200
+    
 ### Configuration
 
 Setup these environment variables to run the bot:
@@ -45,16 +55,6 @@ Setup these environment variables to run the bot:
     HUBOT_HTTPS_QUERY='id=123&name=Oliver'
 
     HUBOT_HTTPS_HEADERS='{"content-type": "application/json"}'
-
-### Scripting
-
-An example script is included at `scripts/example.coffee`, so check it out to
-get started, along with the [Scripting Guide][scripting-docs].
-
-For many common tasks, there's a good chance someone has already one to do just
-the thing.
-
-[scripting-docs]: https://github.com/github/hubot/blob/master/docs/scripting.md
 
 ### external-scripts
 
