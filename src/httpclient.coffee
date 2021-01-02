@@ -1,19 +1,43 @@
 # Description:
 #   Send a HTTP request to a pre-defined target
 #
-HttpClient = require 'scoped-http-client'
+# Dependencies:
+#   scoped-http-client
+#   url
+#   moment-timezone
+#
+# Configuration:
+#   HUBOT_HTTPS_HREF - url of the endpoint to connect to
+#   HUBOT_HTTPS_DATA - data payload
+#   HUBOT_HTTPS_QUERY - query of the request
+#   HUBOT_HTTPS_HEADERS - headers to add
+#
+# Commands:
+#   hubot httpsget - get a HTTP request
+#   hubot httpspost <unix date> <num of minutes> - post a HTTP request with given date and amount of time
+#
+HttpClient = require('scoped-http-client')
 url = require('url')
 moment = require('moment-timezone')
 
 # gather environment variables
 if process.env.HUBOT_HTTPS_HREF?
   url.href = process.env.HUBOT_HTTPS_HREF
+if url.href?
+  console.log "hubot-httpsclient href is defined as #{url.href}"
+else
+  console.log "hubot-httpsclient href is not defined"
+
 if process.env.HUBOT_HTTPS_DATA?
   url.data = process.env.HUBOT_HTTPS_DATA
 else
   url.data = {}
+
 if process.env.HUBOT_HTTPS_QUERY?
   url.query = process.env.HUBOT_HTTPS_QUERY
+else
+  url.query = {}
+  
 if process.env.HUBOT_HTTPS_HEADERS?
   url.headers = process.env.HUBOT_HTTPS_HEADERS
 else
@@ -44,7 +68,7 @@ put = (url, headers, data, cb) ->
     .headers(JSON.parse(headers))
     .put(json) (err, res, body) ->
       if err?
-        callback(err)
+        cb(err)
         return
 
       json = {}
@@ -76,7 +100,7 @@ module.exports = (robot) ->
         return
 
       if json?
-        res.reply "Status code: #{json.result.statusCode}"
+        res.send "Status code: #{json.result.statusCode}"
 
 
   robot.respond /httpspost (\w{3}) (\w{3})\s+(\d+) ([\d\:]+) (\w{3}) (\d{4}) (\d+)$/i, (res) ->
@@ -105,4 +129,4 @@ module.exports = (robot) ->
         return
 
       if json?
-        res.reply "Status code: #{json.result.statusCode}"
+        res.send "Status code: #{json.result.statusCode}"

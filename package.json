@@ -1,11 +1,10 @@
 {
   "name": "hubot-httpsclient",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.coffee",
   "author": "David Peng <dpeng1@gmail.com>",
   "description": "Generic https client to make calls",
   "dependencies": {
-    "hubot-slack": "^4.8.1",
     "moment-timezone": "^0.5.27",
     "scoped-http-client": "^0.11.0"
   },
