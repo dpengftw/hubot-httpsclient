@@ -1,6 +1,6 @@
 {
   "name": "hubot-httpsclient",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "author": "David Peng <dpeng1@gmail.com>",
   "description": "Generic https client to make calls",

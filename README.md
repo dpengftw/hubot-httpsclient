@@ -36,23 +36,15 @@ Then you can interact with hubot-httpsclient by typing `hubot-httpsclient help`.
 
 ### Configuration
 
-A few scripts (including some installed by default) require environment
-variables to be set as a simple form of configuration.
+Setup these environment variables to run the bot:
 
-Each script should have a commented header which contains a "Configuration"
-section that explains which values it requires to be placed in which variable.
-When you have lots of scripts installed this process can be quite labour
-intensive. The following shell command can be used as a stop gap until an
-easier way to do this has been implemented.
+    HUBOT_HTTPS_HREF=https://endpoint.api
 
-    grep -o 'hubot-[a-z0-9_-]\+' external-scripts.json | \
-      xargs -n1 -I {} sh -c 'sed -n "/^# Configuration/,/^#$/ s/^/{} /p" \
-          $(find node_modules/{}/ -name "*.coffee")' | \
-        awk -F '#' '{ printf "%-25s %s\n", $1, $2 }'
+    HUBOT_HTTPS_DATA='{"id": 123, "name": Oliver, "datetime": #{startTime}}'
 
-How to set environment variables will be specific to your operating system.
-Rather than recreate the various methods and best practices in achieving this,
-it's suggested that you search for a dedicated guide focused on your OS.
+    HUBOT_HTTPS_QUERY='id=123&name=Oliver'
+
+    HUBOT_HTTPS_HEADERS='{"content-type": "application/json"}'
 
 ### Scripting
 

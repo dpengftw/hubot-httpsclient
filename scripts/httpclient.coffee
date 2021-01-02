@@ -5,18 +5,21 @@ HttpClient = require 'scoped-http-client'
 url = require('url')
 moment = require('moment-timezone')
 
-if process.env.HTTPS_HREF?
-  url.href = process.env.HTTPS_HREF
-if process.env.HTTPS_DATA?
-  url.data = process.env.HTTPS_DATA
+# gather environment variables
+if process.env.HUBOT_HTTPS_HREF?
+  url.href = process.env.HUBOT_HTTPS_HREF
+if process.env.HUBOT_HTTPS_DATA?
+  url.data = process.env.HUBOT_HTTPS_DATA
 else
   url.data = {}
-if process.env.HTTPS_QUERY?
-  url.query = process.env.HTTPS_QUERY
-if process.env.HTTPS_HEADERS?
-  url.headers = process.env.HTTPS_HEADERS
+if process.env.HUBOT_HTTPS_QUERY?
+  url.query = process.env.HUBOT_HTTPS_QUERY
+if process.env.HUBOT_HTTPS_HEADERS?
+  url.headers = process.env.HUBOT_HTTPS_HEADERS
 else
   url.headers = '{"Content-Type": "application/json"}'
+  
+
 
 get = (url, query, cb) ->
   if typeof(query) is 'function'
@@ -92,10 +95,10 @@ module.exports = (robot) ->
     endTime = moment(dateTime).add(minutes, 'minutes').format()
 
     # replace variables with calcuated values
-    data = url.data.replace /{{ startTime }}/, startTime
-    data = data.replace /{{ endTime }}/, endTime
-    data = data.replace /{{ timezone }}/, timezone
-
+    data = url.data.replace /#{startTime}/, startTime
+    data = data.replace /#{endTime}/, endTime
+    data = data.replace /#{timezone}/, timezone
+  
     post url.href, url.headers, data, (err, json) ->
       if err?
         robot.emit 'error', err
