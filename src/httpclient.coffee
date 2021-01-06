@@ -62,7 +62,6 @@ get = (url, query, cb) ->
       cb null, json
 
 put = (url, headers, data, cb) ->
-  json = JSON.stringify(data)
 
   HttpClient.create(url)
     .headers(JSON.parse(headers))
@@ -77,7 +76,6 @@ put = (url, headers, data, cb) ->
       cb null, json
 
 post = (url, headers, data, cb) ->
-  json = JSON.stringify(data)
 
   HttpClient.create(url)
     .headers(JSON.parse(headers))
@@ -130,3 +128,4 @@ module.exports = (robot) ->
 
       if json?
         res.send "Status code: #{json.result.statusCode}"
+        res.send "${res.body}"

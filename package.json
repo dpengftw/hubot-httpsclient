@@ -1,6 +1,6 @@
 {
   "name": "hubot-httpsclient",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.coffee",
   "author": "David Peng <dpeng1@gmail.com>",
   "description": "Generic https client to make calls",
