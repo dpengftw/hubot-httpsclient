@@ -1,0 +1,13 @@
+{ "HUBOT_HTTPS_URLS": 
+    {
+        "url1": {
+            "href": "https://somwhere.rbow", 
+            "query": {"a": 1, "b": 2}
+        },
+        "url2": {
+            "href": "https://whatdoesit.mean",
+            "headers": {"Content-Type": "application/json"},
+            "data": {"a": 1, "b": 2}
+        }
+    }
+}

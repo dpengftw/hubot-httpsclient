@@ -36,25 +36,33 @@ Then you can interact with hubot-httpsclient by typing `hubot-httpsclient help`.
 
 Standard HTTPS GET request.
 
-    hubot-httpsclient> hubot-httpsclient httpsget
+    hubot-httpsclient> hubot-httpsclient httpsget url1
     hubot-httpsclient> Shell: Status code: 200
 
 Extended HTTPS POST request.
 
-    hubot-httpsclient> hubot-httpsclient httpspost Fri Jan  1 15:47:12 PST 2021 5
+    hubot-httpsclient> hubot-httpsclient httpspost url2 Fri Jan  1 15:47:12 PST 2021 5
     hubot-httpsclient> Shell: Status code: 200
     
 ### Configuration
 
-Setup these environment variables to run the bot:
+Setup these json configuration to run the bot:
 
-    HUBOT_HTTPS_HREF=https://endpoint.api
-
-    HUBOT_HTTPS_DATA='{"id": 123, "name": Oliver, "datetime": #{startTime}}'
-
-    HUBOT_HTTPS_QUERY='id=123&name=Oliver'
-
-    HUBOT_HTTPS_HEADERS='{"content-type": "application/json"}'
+```
+{ "HUBOT_HTTPS_URLS": 
+    {
+        "url1": {
+            "href": "https://somwhere.rbow", 
+            "query": {"a": 1, "b": 2}
+        },
+        "url2": {
+            "href": "https://whatdoesit.mean",
+            "headers": {"Content-Type": "application/json"},
+            "data": {"a": 1, "b": 2}
+        }
+    }
+}
+```
 
 ### external-scripts
 
