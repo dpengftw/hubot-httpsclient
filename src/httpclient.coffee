@@ -20,7 +20,7 @@ nconf = require('nconf')
 
 nconf.argv()
    .env()
-   .file({ file: 'httpclient.json' })
+   .file({ file: 'httpsclient.json' })
 
 urls = nconf.get('HUBOT_HTTPS_URLS')
 
@@ -55,7 +55,7 @@ put = (url, headers, data, cb) ->
 
   HttpClient.create(url)
     .headers(JSON.parse(headers))
-    .put(json) (err, res, body) ->
+    .put(data) (err, res, body) ->
       if err?
         cb(err)
         return
@@ -66,10 +66,9 @@ put = (url, headers, data, cb) ->
       cb null, json
 
 post = (url, headers, data, cb) ->
-
   HttpClient.create(url)
-    .headers(JSON.parse(headers))
-    .post(json) (err, res, body) ->
+    .headers(headers)
+    .post(data) (err, res, body) ->
       if err?
         return cb(err)
 
@@ -112,10 +111,11 @@ module.exports = (robot) ->
 
     url = urls[alias]
     # replace variables with calcuated values
-    data = url.data.replace /#{startTime}/, startTime
+    data = JSON.stringify(url.data)
+    data = data.replace /#{startTime}/, startTime
     data = data.replace /#{endTime}/, endTime
     data = data.replace /#{timezone}/, timezone
-  
+
     post url.href, url.headers, data, (err, json) ->
       if err?
         robot.emit 'error', err
@@ -123,4 +123,6 @@ module.exports = (robot) ->
 
       if json?
         res.send "Status code: #{json.result.statusCode}"
-        res.send "${res.body}"
+
+      if res.body?
+        res.send "#{res.body}"

@@ -46,7 +46,7 @@ Extended HTTPS POST request.
     
 ### Configuration
 
-Setup these json configuration to run the bot:
+Create a file named httpsclient.json to configure the bot:
 
 ```
 { "HUBOT_HTTPS_URLS": 
@@ -56,9 +56,9 @@ Setup these json configuration to run the bot:
             "query": {"a": 1, "b": 2}
         },
         "url2": {
-            "href": "https://whatdoesit.mean",
+            "href": "https://replace.dates",
             "headers": {"Content-Type": "application/json"},
-            "data": {"a": 1, "b": 2}
+            "data": {"a":  "#{startTime}", "b": "#{endTime}"}
         }
     }
 }
