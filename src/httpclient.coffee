@@ -92,8 +92,23 @@ module.exports = (robot) ->
       if json?
         res.send "Status code: #{json.result.statusCode}"
 
+  robot.respond /httpspost (\w+)$/i, (res) ->
+    alias = res.match[1]
 
-  robot.respond /httpspost (\w+) (\w{3}) (\w{3})\s+(\d+) ([\d\:]+) (\w{3}) (\d{4}) (\d+)$/i, (res) ->
+    url = urls[alias]
+
+    post url.href, url.headers, url.data, (err, json) ->
+      if err?
+        robot.emit 'error', err
+        return
+
+      if json?
+        res.send "Status code: #{json.result.statusCode}"
+
+      if res.body?
+        res.send "#{res.body}"
+        
+  robot.respond /httpspostwithdate (\w+) (\w{3}) (\w{3})\s+(\d+) ([\d\:]+) (\w{3}) (\d{4}) (\d+)$/i, (res) ->
     alias = res.match[1]
     dayofweek = res.match[2]
     month = res.match[3]
