@@ -41,7 +41,7 @@ Standard HTTPS GET request.
 
 Extended HTTPS POST request.
 
-    hubot-httpsclient> hubot-httpsclient httpspost url2 Fri Jan  1 15:47:12 PST 2021 5
+    hubot-httpsclient> hubot-httpsclient httpspost url2
     hubot-httpsclient> Shell: Status code: 200
     
 ### Configuration
@@ -56,9 +56,8 @@ Create a file named **httpsclient.json** to configure the bot:
             "query": {"a": 1, "b": 2}
         },
         "url2": {
-            "href": "https://replace.dates",
-            "headers": {"Content-Type": "application/json"},
-            "data": {"a":  "#{startTime}", "b": "#{endTime}"}
+            "href": "https://bluebirds.fly",
+            "headers": {"Content-Type": "application/json"}
         }
     }
 }
