@@ -105,8 +105,8 @@ module.exports = (robot) ->
       if json?
         res.send "Status code: #{json.result.statusCode}"
 
-      if res.body?
-        res.send "#{res.body}"
+      if json.body?
+        res.send "#{json.body}"
         
   robot.respond /httpspostwithdate (\w+) (\w{3}) (\w{3})\s+(\d+) ([\d\:]+) (\w{3}) (\d{4}) (\d+)$/i, (res) ->
     alias = res.match[1]
@@ -139,5 +139,5 @@ module.exports = (robot) ->
       if json?
         res.send "Status code: #{json.result.statusCode}"
 
-      if res.body?
-        res.send "#{res.body}"
+      if json.body?
+        res.send "#{json.body}"
