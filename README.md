@@ -46,7 +46,7 @@ Extended HTTPS POST request.
     
 ### Configuration
 
-Create a file named **httpsclient.json** to configure the bot:
+Create a file named **httpsclient.json** and place in the hubot root to configure the bot:
 
 ```
 { "HUBOT_HTTPS_URLS": 
